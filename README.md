@@ -25,7 +25,6 @@ Conceitual
 	Reserva_Marmita
 
 	ID_Reserva
-	ID_Marmita
 	ID_Usuário
 	Hora_Reserva
 
@@ -35,3 +34,8 @@ Conceitual
 	Quantidade_Disponível
 	Data_Lista
 	Hora_Liberação
+
+Logico 
+
+![image](https://github.com/user-attachments/assets/7cb9ee4f-b18c-4257-90b6-7d4761a3d2bf)
+
