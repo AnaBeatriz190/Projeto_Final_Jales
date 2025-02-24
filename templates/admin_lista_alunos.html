@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Inscrições - Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Arquivo CSS no diretório static -->
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Lista de Inscrições - Alunos</h2>
+
+    <!-- Tabela de inscrições -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do Aluno</th>
+                <th>Data da Inscrição</th>
+                <th>Hora de Inscrição</th>
+                <th>Quantidade de Vagas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inscricao in inscricoes %}
+            <tr>
+                <td>{{ inscricao.nome }}</td>
+                <td>{{ inscricao.data_inscricao }}</td>
+                <td>{{ inscricao.hora_inicio }}</td>
+                <td>{{ inscricao.quantidade_vagas }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

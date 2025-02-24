@@ -1,3 +1,11 @@
+/* Resetando margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuração geral do body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -9,26 +17,32 @@ body {
     height: 100vh;
 }
 
+/* Container do formulário */
 .form-container {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 350px; /* Ajustado para maior largura */
+    max-width: 100%; /* Responsividade */
 }
 
+/* Título do formulário */
 .form-container h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Estilo dos rótulos (labels) */
 .form-container label {
     font-size: 14px;
     margin-bottom: 5px;
     display: block;
 }
 
-.form-container input {
+/* Estilo dos campos de entrada */
+.form-container input,
+.form-container select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -37,6 +51,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Estilo do botão de envio */
 .form-container button {
     width: 100%;
     padding: 10px;
@@ -48,12 +63,21 @@ body {
     cursor: pointer;
 }
 
+/* Efeito de hover no botão */
 .form-container button:hover {
     background-color: #45a049;
 }
 
+/* Estilo dos erros */
+.form-container .error {
+    color: red;
+    font-size: 12px;
+}
+
+/* Links de "Cadastrar-se" e "Esqueci a senha" */
 .form-container .links {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
     margin-top: 10px;
     font-size: 14px;
 }

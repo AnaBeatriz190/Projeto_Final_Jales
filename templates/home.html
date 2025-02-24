@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Almoço - IFPB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Cadastro de Almoço</h2>
+    <form action="/submit-form" method="POST">
+        <div>
+            <label for="matricula">Matrícula</label>
+            <input type="text" id="matricula" name="matricula" required placeholder="Digite sua matrícula">
+            <!-- Exibe erro caso haja erro de validação -->
+            {% if erros %}
+                <div class="error">{{ erros[0] }}</div>
+            {% endif %}
+        </div>
+        <div>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+            <!-- Exibe erro caso haja erro de validação -->
+            {% if erros %}
+                <div class="error">{{ erros[1] }}</div>
+            {% endif %}
+        </div>
+        <button type="submit">Cadastrar Almoço</button>
+    </form>
+
+    <div class="links">
+        <a href="/cadastro">Cadastrar-se</a>
+        <a href="/esqueci-senha">Esqueci a senha</a>
+    </div>
+</div>
+
+</body>
+</html>
