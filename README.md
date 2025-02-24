@@ -6,6 +6,8 @@ Instituto Federal de Educação, Ciência e Tecnologia da Paraíba - Campus Picu
 **Professor Docente:** Jales Monteiro<br/>
 **Integrantes:** Antony Ryan, Ana Beatriz, Anderson Cunha e Gabriel Vinicius<br/> 
 
+# Descrição da aplicação
+
 
 # Modelagens
 
