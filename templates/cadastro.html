@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar - IFPB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Cadastrar-se</h2>
+    <form action="{{ url_for('submit_cadastro') }}" method="POST">
+        <div>
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
+        </div>
+        <div>
+            <label for="matricula">Matrícula</label>
+            <input type="text" id="matricula" name="matricula" required placeholder="Digite sua matrícula">
+        </div>
+        <div>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+        </div>
+        <div>
+            <label for="confirmarSenha">Confirmar Senha</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" required placeholder="Confirme sua senha">
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <div class="links">
+        <p>Já tem uma conta? <a href="/login">Faça login</a></p>
+    </div>
+</div>
+
+</body>
+</html>
