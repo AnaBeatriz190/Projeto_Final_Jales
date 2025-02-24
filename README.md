@@ -35,7 +35,7 @@ Conceitual
 	Data_Lista
 	Hora_Liberação
 
-Logico 
+Lógico 
 
 ![image](https://github.com/user-attachments/assets/7cb9ee4f-b18c-4257-90b6-7d4761a3d2bf)
 
