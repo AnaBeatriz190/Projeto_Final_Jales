@@ -1,10 +1,10 @@
 # Projeto_Final_Jales
 
-Instituto Federal de Educação, Ciência e Tecnologia da Paraíba - Campus Picuí
-Curso: Tecnologia em Desenvolvimento de Sistemas para Internet
-Disciplina: Bando de Dados - I
-Professor Docente: Jales Monteiro
-Integrantes: Antony Ryan, Ana Beatriz, Anderson Cunha e Gabriel Vinicius 
+Instituto Federal de Educação, Ciência e Tecnologia da Paraíba - Campus Picuí<br/>
+Curso: Tecnologia em Desenvolvimento de Sistemas para Internet<br/>
+Disciplina: Bando de Dados - I<br/>
+Professor Docente: Jales Monteiro<br/>
+Integrantes: Antony Ryan, Ana Beatriz, Anderson Cunha e Gabriel Vinicius<br/> 
 
 
 # Modelagens
