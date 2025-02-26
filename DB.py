@@ -29,9 +29,9 @@ def criar_tabelas():
                    )
 
                    ''')                    
-    
     conn.commit()
     conn.close()
+
     
 criar_tabelas()
 
@@ -43,6 +43,8 @@ def inserirUsuario(nome, matricula, senha):
                    ''', (nome, matricula, senha))
     conn.commit()
     conn.close()
+    procedimento_usuario_criado(nome, matricula, senha)
+    
     
 def listarUsuario():
     conn = sqlite.connect('DB.sqlite')
@@ -53,4 +55,51 @@ def listarUsuario():
     for dado in dados:
         usuarios.append(dado)
     conn.close()
+    procedimento_lista_mostrada()
     return usuarios
+
+
+def criar_triggers():
+    conn = sqlite.connect('DB.sqlite')
+    cursor = conn.cursor()
+
+    
+    cursor.execute('''
+        CREATE TRIGGER IF NOT EXISTS verificar_e_atualizar_lista
+        BEFORE INSERT ON reserva_marmita
+        FOR EACH ROW
+        WHEN (SELECT quantidade_disponivel FROM lista ORDER BY id_lista DESC LIMIT 1) > 0
+        BEGIN
+            UPDATE lista
+            SET quantidade_disponivel = quantidade_disponivel - 1
+            WHERE id_lista = (SELECT id_lista FROM lista ORDER BY id_lista DESC LIMIT 1);
+        END;
+    ''')
+
+    
+    cursor.execute('''
+        CREATE TRIGGER IF NOT EXISTS historico_gatilho
+        AFTER INSERT ON reserva_marmita
+        FOR EACH ROW
+        BEGIN
+            INSERT INTO historicoDB (id_usuario, hora_reserva, acao)
+            VALUES (NEW.id_usuario, NEW.hora_reserva, 'Reserva Adicionada');
+        END;
+    ''')
+
+    conn.commit()
+    conn.close()
+
+
+criar_triggers()
+#NÃO TEM COMO CRIAR PROCEDIMENTOS NO SQLITE EM SI, ENTÃO FIZEM PYTHON E TORCER PRA PIEDADE DE JALES.
+
+def procedimento_usuario_criado(id_usuario, nome, matricula):
+    
+    print(f"Usuário criado: ID={id_usuario}, Nome={nome}, Matrícula={matricula}")
+def procedimento_lista_mostrada():
+    print("Lista mostrada:")
+
+
+
+

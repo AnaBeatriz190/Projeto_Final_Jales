@@ -1,5 +1,6 @@
 from flask import *
 import DB
+import historicoDB.sqlite
 app = Flask(__name__)
 
 @app.route("/", methods = ['GET'])
