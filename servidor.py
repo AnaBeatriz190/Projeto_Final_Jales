@@ -66,23 +66,9 @@ def logout():
 
 
 
-@app.route('/reservar_marmita', methods=['POST'])
-def reservando_marmita():
-    matricula = request.form['matricula']
-    senha = request.form['senha']
-    
-    conn = sqlite.connect('DB.sqlite')
-    cursor = conn.cursor()
-    cursor.execute('SELECT id_usuario FROM usuarios WHERE matricula = ?', (matricula,))
-    usuario = cursor.fetchone()
-    if usuario:
-        id_usuario = usuario[0]
-        DB.reservar_marmita(id_usuario)
-    conn.close()
-    
-    return render_template('home.html', matricula=matricula)
 
-def @app.route('/escolher_almoco', methods=['POST'])
+
+@app.route('/escolher_almoco', methods=['POST'])
 def escolhendo():
     matricula = request.form['matricula']
     senha = request.form['senha']
@@ -94,7 +80,14 @@ def escolhendo():
         id_usuario = usuario[0]
         DB.reservar_marmita(id_usuario)
     conn.close()
+    
+    return render_template('escolher_almoco.html', matricula=matricula)
 
+@app.route('/lista')
+def listando():
+    alunos = DB.listarUsuario()
+    return render_template('admin_lista_alunos.html', )
 
+    
 if __name__ == "__main__":
     app.run(debug=True)

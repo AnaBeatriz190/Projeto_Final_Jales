@@ -52,26 +52,39 @@ def inserirUsuario(nome, matricula, senha):
     cursor = conn.cursor()
     
     try:
-        conn.begin()  # Inicia a transação
+        conn.begin() 
         cursor.execute('''INSERT INTO usuarios (nome, matricula, senha) VALUES (?, ?, ?)''', 
                        (nome, matricula, senha))
-        conn.commit()  # Confirma a transação
+        conn.commit() 
     except Exception as e:
-        conn.rollback()  # Desfaz a transação em caso de erro
+        conn.rollback() 
         flash(f'Ocorreu um erro: {str(e)}', 'error')
     finally:
         conn.close()
+
+def listarUsuario():
+    conn = sqlite.connect('DB.sqlite')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM usuarios order by id_usuario desc')
+    dados = cursor.fetchall()
+    usuarios = []
+    for dado in dados:
+        usuarios.append(dado)
+    conn.close()
+    return usuarios
+
+
 
 def reservar_marmita(id_usuario):
     conn = sqlite.connect('DB.sqlite')
     cursor = conn.cursor()
     
     try:
-        conn.begin()  # Inicia a transação
+        conn.begin()  
         cursor.execute('''INSERT INTO reserva_marmita (id_usuario) VALUES (?)''', (id_usuario,))
-        conn.commit()  # Confirma a transação
+        conn.commit() 
     except Exception as e:
-        conn.rollback()  # Desfaz a transação em caso de erro
+        conn.rollback() 
         flash(f'Ocorreu um erro ao reservar a marmita: {str(e)}', 'error')
     finally:
         conn.close()
