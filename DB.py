@@ -2,9 +2,8 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 import sqlite3 as sqlite
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # Necessário para usar flash messages
+app.secret_key = 'supersecretkey'
 
-# Função para criar as tabelas no banco de dados
 
 #DDL
 def criar_tabelas():
@@ -27,10 +26,21 @@ def criar_tabelas():
                        FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
                    )
                    ''')
+
+    cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS lista (
+                        id_lista INTEGER PRIMARY KEY AUTOINCREMENT,
+                        quantidade_disponivel INTEGER NOT NULL,
+                        data_lista,
+                        hora_liberacao TIME
+                    )
+    
+    
+    
+                   ''')
     conn.commit()
     conn.close()
 
-# Função para inserir um novo usuário com transação
 
 #DML
 def inserirUsuario(nome, matricula, senha):
@@ -48,15 +58,6 @@ def inserirUsuario(nome, matricula, senha):
     finally:
         conn.close()
 
-# Função para validar login
-def validar_login(matricula, senha):
-    conn = sqlite.connect('DB.sqlite')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM usuarios WHERE matricula = ? AND senha = ?', (matricula, senha))
-    user = cursor.fetchone()
-    conn.close()
-    return user is not None
-
 def reservar_marmita(id_usuario):
     conn = sqlite.connect('DB.sqlite')
     cursor = conn.cursor()
@@ -70,6 +71,32 @@ def reservar_marmita(id_usuario):
         flash(f'Ocorreu um erro ao reservar a marmita: {str(e)}', 'error')
     finally:
         conn.close()
+
+
+#DQL
+
+def validar_login(matricula, senha):
+    conn = sqlite.connect('DB.sqlite')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM usuarios WHERE matricula = ? AND senha = ?', (matricula, senha))
+    user = cursor.fetchone()
+    conn.close()
+    return user is not None
+
+
+#DCL
+def criarAdmin():
+    conn = sqlite.connect('DB.sqlite')
+    cursor = conn.cursor()
+    cursor.execute('''
+                    GRANT SELECT, INSERT, UPDATE
+                    ON reserva_marmita.*
+                    TO gerente;
+
+                   ''')
+    user = cursor.fetchone()
+    conn.close()
+    return user is not None
 
 if __name__ == "__main__":
     app.run(debug=True)
