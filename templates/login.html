@@ -20,7 +20,12 @@
         <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
     </div>
     <button type="submit">Entrar</button>
+    <div class="links">
+      <a href="/cadastro">Cadastrar-se</a>
+      <a href="/esqueci-senha">Esqueci a senha</a>
+    </div>
 </form>
+
 
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
