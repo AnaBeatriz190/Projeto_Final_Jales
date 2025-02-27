@@ -31,7 +31,7 @@ def criar_tabelas():
                     CREATE TABLE IF NOT EXISTS lista (
                         id_lista INTEGER PRIMARY KEY AUTOINCREMENT,
                         quantidade_disponivel INTEGER NOT NULL,
-                        data_lista,
+                        data_lista DATE,
                         hora_liberacao TIME
                     )
                     ''')
@@ -52,14 +52,16 @@ def inserirUsuario(nome, matricula, senha):
     cursor = conn.cursor()
     
     try:
-        conn.begin() 
         cursor.execute('''INSERT INTO usuarios (nome, matricula, senha) VALUES (?, ?, ?)''', 
                        (nome, matricula, senha))
-        conn.commit() 
+        conn.commit()
+        print('Opa')
     except Exception as e:
+        print(e)
         conn.rollback() 
         flash(f'Ocorreu um erro: {str(e)}', 'error')
     finally:
+        print('Opa2')
         conn.close()
 
 def listarUsuario():

@@ -22,12 +22,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for inscricao in inscricoes %}
+            {% for aluno in alunos %}
             <tr>
-                <td>{{ inscricao.nome }}</td>
-                <td>{{ inscricao.data_inscricao }}</td>
-                <td>{{ inscricao.hora_inicio }}</td>
-                <td>{{ inscricao.quantidade_vagas }}</td>
+                <td>{{ aluno[1] }} </td>
+          
             </tr>
             {% endfor %}
         </tbody>

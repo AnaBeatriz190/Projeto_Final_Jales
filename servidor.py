@@ -1,4 +1,4 @@
-from flask import *
+from flask import Flask, request, render_template, redirect, url_for, flash, session
 import sqlite3 as sqlite
 import DB
 
@@ -7,18 +7,19 @@ app.secret_key = 'chavesupersecretashhhhh'
 
 @app.route("/", methods=['GET'])
 def raiz():
-    DB.criar_tabelas()
-    return render_template('cadastro.html')
+    return render_template('login.html')
 
-@app.route('/cadastro', methods=['POST'])
+@app.route('/cadastro', methods=['POST', 'GET'])
 def inserindo_dados():
-    nome = request.form['nome']
-    matricula = request.form['matricula']
-    senha = request.form['senha']
-    DB.inserirUsuario(nome, matricula, senha)
-    
-    return render_template('home.html')
+    if request.method == 'POST':
 
+        nome = request.form['nome']
+        matricula = request.form['matricula']
+        senha = request.form['senha']
+        DB.inserirUsuario(nome, matricula, senha)
+        return render_template('home.html')
+    else:
+        return render_template('cadastro.html')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -74,11 +75,11 @@ def escolhendo():
     
     return render_template('escolher_almoco.html', matricula=matricula)
 
-@app.route('/lista')
+@app.route('/lista', methods = ['POST'])
 def listando():
     alunos = DB.listarUsuario()
-    return render_template('admin_lista_alunos.html', )
+    return render_template('admin_lista_alunos.html', alunos=alunos)
 
-    
+
 if __name__ == "__main__":
     app.run(debug=True)
