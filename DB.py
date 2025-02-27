@@ -34,9 +34,13 @@ def criar_tabelas():
                         data_lista,
                         hora_liberacao TIME
                     )
-    
-    
-    
+                    ''')
+    cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS historico (
+                        id_usuario INTEGER NOT NULL,
+                        hora_reserva TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+                        acao TEXT
+                    )
                    ''')
     conn.commit()
     conn.close()
@@ -137,7 +141,7 @@ def criar_triggers():
 
 
 criar_triggers()
-#NÃO TEM COMO CRIAR PROCEDIMENTOS NO SQLITE EM SI, ENTÃO FIZEM PYTHON E TORCER PRA PIEDADE DE JALES.
+#NÃO TEM COMO CRIAR PROCEDIMENTOS NO SQLITE EM SI, ENTÃO FIZ EM PYTHON E TORCER PRA PIEDADE DE JALES.
 
 def procedimento_usuario_criado(id_usuario, nome, matricula):
     

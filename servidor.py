@@ -17,7 +17,7 @@ def inserindo_dados():
     senha = request.form['senha']
     DB.inserirUsuario(nome, matricula, senha)
     
-    return render_template('admin_lista_alunos.html')
+    return render_template('home.html')
 
 @app.route('/listar_dados')
 def listando():
@@ -55,7 +55,7 @@ def validar_login(matricula, senha):
 @app.route('/home', methods=['GET'])
 def home():
     if 'matricula' in session:  
-        return render_template('home.html', matricula=session['matricula'])
+        return render_template('escolher_almoco.html', matricula=session['matricula'])
     else:
         return render_template('login.html') 
 
@@ -78,10 +78,23 @@ def reservando_marmita():
     if usuario:
         id_usuario = usuario[0]
         DB.reservar_marmita(id_usuario)
-    
     conn.close()
     
     return render_template('home.html', matricula=matricula)
+
+def @app.route('/escolher_almoco', methods=['POST'])
+def escolhendo():
+    matricula = request.form['matricula']
+    senha = request.form['senha']
+    conn = sqlite.connect('DB.sqlite')
+    cursor = conn.cursor()
+    cursor.execute('SELECT id_usuario FROM usuarios WHERE matricula = ?', (matricula,))
+    usuario = cursor.fetchone()
+    if usuario:
+        id_usuario = usuario[0]
+        DB.reservar_marmita(id_usuario)
+    conn.close()
+
 
 if __name__ == "__main__":
     app.run(debug=True)
