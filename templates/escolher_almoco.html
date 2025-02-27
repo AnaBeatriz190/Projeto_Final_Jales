@@ -12,22 +12,6 @@
     <h2>Escolha o seu Almoço</h2>
     <form action="/lista" method="POST">
         <div>
-            <label for="matricula">Matrícula</label>
-            <input type="text" id="matricula" name="matricula" required placeholder="Digite sua matrícula">
-            {% if erros %}
-                <div class="error">{{ erros[0] }}</div>
-            {% endif %}
-        </div>
-
-        <div>
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
-            {% if erros %}
-                <div class="error">{{ erros[1] }}</div>
-            {% endif %}
-        </div>
-
-        <div>
             <label for="opcao-almoço">Escolha seu almoço:</label>
             <select id="opcao-almoço" name="opcao-almoço" required>
                 <option value="opcao1">Arroz, feijão e bife</option>
@@ -40,7 +24,7 @@
 
         <div>
             <label for="preferencias">Alguma preferência ou restrição alimentar?</label>
-            <textarea id="preferencias" name="preferencias" rows="3" placeholder="Ex: sem glúten, sem lactose, vegetariano..."></textarea>
+            <textarea id="preferencias" name="preferencias" rows="3" placeholder=></textarea>
         </div>
 
         <button type="submit">Confirmar Escolha</button>
