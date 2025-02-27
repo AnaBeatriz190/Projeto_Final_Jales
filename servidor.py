@@ -19,11 +19,6 @@ def inserindo_dados():
     
     return render_template('home.html')
 
-@app.route('/listar_dados')
-def listando():
-    listaDB = DB.listarUsuario()
-    return render_template('lista.html', lista=listaDB)
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -63,10 +58,6 @@ def home():
 def logout():
     session.pop('matricula', None) 
     return render_template('login.html')
-
-
-
-
 
 @app.route('/escolher_almoco', methods=['POST'])
 def escolhendo():
